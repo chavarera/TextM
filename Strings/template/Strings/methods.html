@@ -1,0 +1,58 @@
+{% extends 'Strings/base_layout.html' %}
+{% load static %}
+
+{% block content %}
+
+ <!-- Content Column -->
+ <div class="col-lg-12 mb-4">
+    <!-- Project Card Example -->
+    {% if data%}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="#">{{names}}</a></li>
+                      <li class="breadcrumb-item"><a href="#">Methods</a></li>
+
+                    </ol>
+                  </nav>
+            </h6>
+        </div>
+        <div class="card-body">
+            {% for method,color in data.items %}
+
+            <button type="button" class="{{color}}" style="margin: 5px;" id="{{names}}-{{method}}" name="{{method}}" onclick="GetData(this.id)">{{method}}</button>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% if magic %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="#">{{names}}</a></li>
+                      <li class="breadcrumb-item"><a href="#">Magic Methods</a></li>
+
+                    </ol>
+                  </nav>
+            </h6>
+           
+        </div>
+        <div class="card-body">
+            {% for method,color in magic.items %}
+
+            <button type="button" class="{{color}}" style="margin: 5px;" id="{{names}}-{{method}}" name="{{method}}" onclick="GetData(this.id)">{{method}}</button>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+<script>
+    function GetData(btn_id){
+        window.location.href = '/Details/'+btn_id;
+    }
+</script>
+{% endblock %}
