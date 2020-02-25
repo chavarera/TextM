@@ -50,83 +50,23 @@
             <hr class="sidebar-divider">
 
       
-
+            {% for module in modules %}
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#strings"
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#{{module}}"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>String</span>
+                    <span>{{module}}</span>
                 </a>
-                <div id="strings" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="{{module}}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Introduction</h6>
-                        <a class="collapse-item" href="/Methods/string">Methods</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#lists"
-                    aria-expanded="true" aria-controls="lists">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>List</span>
-                </a>
-                <div id="lists" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Introduction</h6>
-                        <a class="collapse-item" href="/Methods/list">Methods</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#tupels"
-                    aria-expanded="true" aria-controls="tupels">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Tuple</span>
-                </a>
-                <div id="tupels" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Introduction</h6>
-                        <a class="collapse-item" href="/Methods/tuple">Methods</a>
-                    </div>
-                </div>
-            </li>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Set</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Introduction</h6>
-                        <a class="collapse-item" href="/Methods/set">Methods</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dcts"
-                    aria-expanded="true" aria-controls="dcts">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Dictionary</span>
-                </a>
-                <div id="dcts" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Introduction</h6>
-                        <a class="collapse-item" href="/Methods/dict">Methods</a>
+                        <a class="collapse-item" href="/Methods/{{module}}">Methods</a>
                     </div>
                 </div>
             </li>
             <hr class="sidebar-divider">
-
+            {% endfor %}
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -143,7 +83,14 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                              {% for val in names %}
+                              <li class="breadcrumb-item"><a href="#">{{val}}</a></li>
+                        
+                              {% endfor %}
+                            </ol>
+                          </nav>
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
@@ -259,5 +206,8 @@
         <script src="{% static '/Strings/bootstrap/js/demo/chart-pie-demo.js' %}"></script>
 
 </body>
-
+<script>
+    var dt=new Date()
+    document.getElementById('time').innerText=dt
+</script>
 </html>

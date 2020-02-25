@@ -1,16 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from random import randint
+from Strings.models import Example
 # Create your views here.
 
+modules=['list','string','tuple','set','dictionary']
 def index(request):
-    return render(request,"Strings/base_layout.html")
+    return render(request,"Strings/base_layout.html",{'modules':modules})
 
 def Methods(request,obj):
     colors = ['primary','secondary','success','danger','warning','info','dark']
     objs = {
         'list':list,
-        'dict':dict,
+        'dictionary':dict,
         'tuple':tuple,
         'set':set,
         'string':str
@@ -22,7 +24,8 @@ def Methods(request,obj):
         params = {
             'names':obj,
             'data':data,
-            'magic':magic_methods
+            'magic':magic_methods,
+            'modules':modules
         }
     return render(request,"Strings/methods.html",params)
 
@@ -32,11 +35,22 @@ def Details(request,btn_id):
     }
     classes,method=btn_id.split("-")
     types = obj_type[classes]
+    exam=Example.objects.get(ex_id=2)
     
+
     document = eval(f'{types}.{method}.__doc__')
+    data = {
+
+        
+        'Defination':document,
+        'Syntax':exam.syntax,
+        'Example':exam.example,
+        'Output':exam.output
+    }
     params={
+        'type':types,
         'names':btn_id.split("-"),
-        'docs':document,
-        'type':types
+        'modules':modules,
+        'data':data
     }
     return render(request,'Strings/details.html',params)
