@@ -15,7 +15,8 @@ def Methods(request,obj):
         'dictionary':dict,
         'tuple':tuple,
         'set':set,
-        'string':str
+        'string':str,
+        
     }
     params = {}
     if obj in objs.keys():
